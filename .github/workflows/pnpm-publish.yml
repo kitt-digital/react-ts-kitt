@@ -8,10 +8,6 @@ on:
 permissions:
   contents: read
 
-before_script:
-  - git config --global credential.helper store
-  - git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
-
 jobs:
   release:
     name: Release
@@ -36,7 +32,17 @@ jobs:
       - name: Ensure the integrity of packages from the public npm registry
         run: npm audit signatures
       - name: Release
+        uses: codfish/semantic-release-action@v5
+        id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_TOKEN }}
-        uses: cycjimmy/semantic-release-action@v6
+      - run: echo ${{ steps.semantic.outputs.release-version }}
+
+      - run: echo "$OUTPUTS"
+        env:
+          OUTPUTS: ${{ toJson(steps.semantic.outputs) }}
+
+      - uses: codfish/some-other-action@v1
+        with:
+          release-version: ${{ steps.semantic.outputs.release-version }}
