@@ -1,0 +1,78 @@
+#!/bin/sh
+MESSAGE_IS_VALID=false;
+# Retrieve the commit message
+COMMIT_MESSAGE=$(cat $1);
+# Retrieve the allowed message types from the ./release.config.cjs file
+MESSAGE_TYPES=$(cat ./release.config.cjs | grep -E -i '@ALLOWED_MESSAGE_TYPES' | cut -d '[' -f 2 | cut -d ']' -f 1);
+# Global error message
+ERROR_MESSAGE="
+--- --- ---
+The commit message does not match the correct pattern!
+
+<type>(<scope>): (<symbol>) <short summary>
+
+(<body>)
+  detailed information about your changes
+(</body>)
+
+Note: The usage of <scope>, <symbol> and <body> is optional
+Accepted <types>: $MESSAGE_TYPES
+
+Please follow the instruction on:
+https://github.com/kitt-digital/vue-ts-kitt?tab=readme-ov-file#semantic-release
+--- --- ---
+";
+# Split the $MESSAGE_TYPES (feat, fix, ..etc.) string into an array of values
+IFS=', ' read -r -a types <<< "$MESSAGE_TYPES";
+# Loop through the commit message types
+for item in "${types[@]}"
+do
+  # The commit message begins with an accepted <type>
+  if [[ $COMMIT_MESSAGE =~ ^$item ]]; then
+    # The commit message has a <scope>
+    if [[ $COMMIT_MESSAGE =~ ^$item\( ]]; then
+      # The <scope> contains no special character except [- a-z A-Z]
+      if [[ $COMMIT_MESSAGE =~ ^$item\([-a-zA-Z]+\) ]]; then
+        # The commit message <type>(<scope>) is followed by a colon with one space
+        if [[ $COMMIT_MESSAGE =~ ^$item\([-a-zA-Z]+\)": " ]]; then
+          MESSAGE_IS_VALID=true;
+        else
+          echo "\n[ERROR]: Commit linter";
+          echo "[ERROR]: Missing a colon and/or a space after the commit message scope: $item(<scope>): <-";
+          echo "$ERROR_MESSAGE";
+          echo "\n[COMMIT_MESSAGE]:\n$COMMIT_MESSAGE";
+          exit 1;
+        fi
+      else
+        echo "\n[ERROR]: Commit linter";
+        echo "[ERROR]: The <scope> contains an illegal character!";
+        echo "[ERROR]: Only the following characters are accepted: [- a-z A-Z]";
+        echo "$ERROR_MESSAGE";
+        echo "\n[COMMIT_MESSAGE]:\n$COMMIT_MESSAGE";
+        exit 1;
+      fi
+    else
+      # The commit message <type> is followed by a colon with one space
+      if [[ $COMMIT_MESSAGE =~ ^"$item: " ]]; then
+        MESSAGE_IS_VALID=true;
+      else
+        echo "\n[ERROR]: Commit linter";
+        echo "[ERROR]: Missing a colon and/or a space after the commit message type: $item: <-";
+        echo "$ERROR_MESSAGE";
+        echo "\n[COMMIT_MESSAGE]:\n$COMMIT_MESSAGE";
+        exit 1;
+      fi
+    fi
+  fi
+done
+# commit message accepted
+if [[ $MESSAGE_IS_VALID == true ]]; then
+  echo "[SUCCESS]: Commit message is valid.";
+  exit 0;
+fi
+# throw error
+echo "\n[ERROR]: Commit linter";
+echo "[ERROR]: Maybe a <type> that isn't accepted? [$MESSAGE_TYPES]";
+echo "$ERROR_MESSAGE";
+echo "\n[COMMIT_MESSAGE]:\n$COMMIT_MESSAGE";
+exit 1;

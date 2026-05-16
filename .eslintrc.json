@@ -1,0 +1,54 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "@vue/eslint-config-typescript",
+    "eslint:recommended",
+    "prettier",
+    "plugin:vue/vue3-recommended",
+    "plugin:storybook/recommended",
+    "plugin:mdx/recommended"
+  ],
+  "overrides": [
+    {
+      "files": "*.mdx",
+      "parser": "eslint-mdx", // enable `eslint-mdx` manually if it does not work
+      "extends": "plugin:mdx/recommended"
+    }
+  ],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": {
+      "js": "espree",
+      "ts": "@typescript-eslint/parser",
+      "<template>": "@typescript-eslint/parser"
+    }
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "indent": "off",
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "prettier/prettier": ["error"],
+    "vue/multi-word-component-names": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/html-self-closing": "off",
+    "vue/prop-name-casing": "off",
+    "vue/max-attributes-per-line": [
+      "error",
+      {
+        "singleline": {
+          "max": 4
+        },
+        "multiline": {
+          "max": 1
+        }
+      }
+    ]
+  }
+}
