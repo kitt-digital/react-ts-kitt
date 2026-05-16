@@ -27,10 +27,14 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '24.x'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+            version: '11.x'
       - name: Install dependencies
-        run: npm install
+        run: pnpm i
       - name: Ensure the integrity of packages from the public npm registry
-        run: npm audit signatures
+        run: pnpm audit signatures
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GTHB_TOKEN }}
