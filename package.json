@@ -29,13 +29,6 @@
     "email": "169592437+kitt-digital@users.noreply.github.com"
   },
   "license": "CC-BY-4.0",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.1.2",
-      "onFail": "download"
-    }
-  },
   "devDependencies": {
     "@babel/types": "^7.29.0",
     "@semantic-release/changelog": "^6.0.3",
