@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kitt-digital/vue-ts-kitt.git"
+    "url": "git+https://github.com/kitt-digital/react-ts-kitt.git"
   },
   "author": {
     "name": "kitt-digital",
