@@ -34,5 +34,5 @@ jobs:
       - name: Release
         uses: cycjimmy/semantic-release-action@v6
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_TOKEN }}
