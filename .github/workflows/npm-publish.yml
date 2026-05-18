@@ -24,6 +24,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
+      - run: echo "const a = 5;" >> test.js
       - run: |
             git config --global user.name "kitt-digital"
             git config --global user.email "169592437+kitt-digital@users.noreply.github.com"
