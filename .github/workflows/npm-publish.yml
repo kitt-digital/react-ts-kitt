@@ -35,4 +35,4 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: |
             echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
-            npm publish react-ts-kitt@1.0.2
+            npm publish react-ts-kitt@1.0.1
