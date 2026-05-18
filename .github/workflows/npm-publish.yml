@@ -1,26 +1,19 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
-name: Node.js Package
+name: Publish Package
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read # for checkout
 
 jobs:
   build:
-    name: Release
+    name: Bundle
     runs-on: ubuntu-latest
-    environment: publish_react-ts-kitt
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
+    environment: publish
     steps:
       - uses: actions/checkout@v6
         with:
@@ -35,7 +28,18 @@ jobs:
         run: npm audit signatures
       - name: Bundle
         run: npm run build
-      - name: Release
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    environment: publish
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
+    needs: build
+    steps:
+      - name: Publish
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           NPM_TOKEN: ${{ secrets.NPM }}
