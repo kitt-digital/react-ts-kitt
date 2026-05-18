@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "declaration": true,
-    "declarationDir": "./@types",
+    "declarationDir": "./src/@types",
     "emitDeclarationOnly": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
