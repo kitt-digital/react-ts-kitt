@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.7...v1.0.8) (2026-05-18)
+
+
+### Bug Fixes
+
+* **package-json:** ~ repo url ([0a9dfed](https://github.com/kitt-digital/react-ts-kitt/commit/0a9dfed67474e6f5f31cbec82fc4c6093ef666a0))
+
 ## [1.0.7](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.6...v1.0.7) (2026-05-18)
 
 
