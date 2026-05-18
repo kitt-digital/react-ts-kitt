@@ -27,6 +27,8 @@ jobs:
           node-version: '24.x'
       - run: echo "const a = 5;" >> test.js
       - run: |
+            git config --global user.email "info@kitt.digital"
+            git config --global user.name "kitt-digital"
             git add test.js
             git commit -m "Add test.js"
             git push
