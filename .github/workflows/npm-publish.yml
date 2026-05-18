@@ -31,7 +31,8 @@ jobs:
         with:
           node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm install
-      - run: npm publish --ignore-scripts
         env:
-          NODE_AUTH_TOKEN: ${{ vars.NODE_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: echo "//registry.npmjs.org/:_authToken=${ NODE_AUTH_TOKEN }" > ~/.npmrc
+      - run: npm install
+      - run: npm publish
