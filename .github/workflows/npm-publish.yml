@@ -28,6 +28,7 @@ jobs:
         run: npm audit signatures
       - name: Bundle
         run: npm run build
+
   release:
     name: Release
     runs-on: ubuntu-latest
