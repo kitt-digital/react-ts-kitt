@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.6...v1.0.7) (2026-05-18)
+
+
+### Bug Fixes
+
+* **workflow:** - global permission ([0d2e9ba](https://github.com/kitt-digital/react-ts-kitt/commit/0d2e9ba94a1b86ff0199a12e3caf1ceff131cad7))
+
 ## [1.0.6](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.5...v1.0.6) (2026-05-18)
 
 
