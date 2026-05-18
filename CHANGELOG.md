@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.5...v1.0.6) (2026-05-18)
+
+
+### Bug Fixes
+
+* **workflow:** ~ naming ([36868f8](https://github.com/kitt-digital/react-ts-kitt/commit/36868f89f1be5fb748497223b47993be8fe41868))
+
 ## [1.0.5](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.4...v1.0.5) (2026-05-18)
 
 
