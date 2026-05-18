@@ -3,6 +3,16 @@
 
 ### Bug Fixes
 
+* **package:** - semantic release exec ([4ee655f](https://github.com/kitt-digital/react-ts-kitt/commit/4ee655f2210bbe3e049e26b0c24a407047d37960))
+* **package:** + semantic release exec ([13c19e0](https://github.com/kitt-digital/react-ts-kitt/commit/13c19e0000ae7a3ba68b3e688ca55104afd63a63))
+* **release:** - exec ([104a6a9](https://github.com/kitt-digital/react-ts-kitt/commit/104a6a9e70bbd6437bd86009a152d2e978a944ab))
+* **release:** ~ set version ([a922994](https://github.com/kitt-digital/react-ts-kitt/commit/a922994ad90c79078365d4639389c882db9946e4))
+
+## [1.0.1](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.0...v1.0.1) (2026-05-18)
+
+
+### Bug Fixes
+
 * **package:** + semantic release exec ([13c19e0](https://github.com/kitt-digital/react-ts-kitt/commit/13c19e0000ae7a3ba68b3e688ca55104afd63a63))
 * **release:** - exec ([104a6a9](https://github.com/kitt-digital/react-ts-kitt/commit/104a6a9e70bbd6437bd86009a152d2e978a944ab))
 * **release:** ~ set version ([a922994](https://github.com/kitt-digital/react-ts-kitt/commit/a922994ad90c79078365d4639389c882db9946e4))
