@@ -9,13 +9,18 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read # for checkout
 
 jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
     environment: publish_react-ts-kitt
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
       - uses: actions/checkout@v6
         with:
@@ -24,13 +29,14 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
-      - run: echo "const a = 5;" >> test.js
-      - run: |
-            git config --global user.name "kitt-digital"
-            git config --global user.email "169592437+kitt-digital@users.noreply.github.com"
-            git add test.js
-            git commit -m "Automated report"
-            git push
+      - name: Install dependencies
+        run: npm install
+      - name: Ensure the integrity of packages from the public npm registry
+        run: npm audit signatures
+      - name: Bundle
+        run: npm run build
+      - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           NPM_TOKEN: ${{ secrets.NPM }}
+        run: npx semantic-release
