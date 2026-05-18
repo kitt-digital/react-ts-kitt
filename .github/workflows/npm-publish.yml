@@ -25,9 +25,9 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
-      - run: echo "const a = 5;" > ~/test.js
+      - run: echo "const a = 5;" >> test.js
       - run: |
-            git add ~/test.js
+            git add test.js
             git commit -m "Add test.js"
             git push
         env:
