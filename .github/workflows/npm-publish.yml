@@ -31,6 +31,7 @@ jobs:
         with:
           node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
+      - run: npm install
         env:
           GITHUB_TOKEN: ${{ secrets.GTHB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
