@@ -18,24 +18,23 @@ jobs:
       pull-requests: write # to be able to comment on released pull requests
       id-token: write # to enable use of OIDC for npm provenance
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v6
+          token: ${{ secrets.PAT }}
+      - uses: actions/setup-node@v5
         with:
           node-version: '24.x'
       - run: |
-            git config user.name
-            git config user.email
-            git config user.email "169592437+kitt-digital@users.noreply.github.com"
-            git config user.name "kitt-digital"
-            git config user.name
-            git config user.email
+            git config --global user.name "kitt-digital"
+            git config --global user.email "169592437+kitt-digital@users.noreply.github.com"
+            git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/kitt-digital/react-ts-kitt.git
+            git checkout main
             echo "const a = 5;" >> test.js
             git add test.js
             git commit -m "Add test.js"
             git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GTHB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          NPM_TOKEN: ${{ secrets.NPM }}
