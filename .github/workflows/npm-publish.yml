@@ -12,9 +12,6 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: read # for checkout
-
 jobs:
   build-and-publish:
     name: Build and publish package
