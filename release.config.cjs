@@ -38,6 +38,12 @@ module.exports = {
     '@semantic-release/github',
     '@semantic-release/npm',
     [
+      '@semantic-release/exec',
+      {
+        prepareCmd: './update-version.sh v1.0.2'
+      }
+    ],
+    [
       '@semantic-release/git',
       {
         assets: ['CHANGELOG.md', 'package.json', 'src/@types/**/*.d.ts'],
