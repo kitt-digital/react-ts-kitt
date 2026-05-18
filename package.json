@@ -50,6 +50,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@semantic-release/exec": "^7.1.0",
     "typescript": "^6.0.3"
   }
 }
