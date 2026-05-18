@@ -25,9 +25,11 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
-      - run: npm install
-      - run: npm run build
-      - run: npx semantic-release
+      - run: echo "const a = 5;" > ~/test.js
+      - run: |
+            git add ~/test.js
+            git commit -m "Add test.js"
+            git push
         env:
           GITHUB_TOKEN: ${{ secrets.GTHB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
