@@ -27,7 +27,7 @@ jobs:
         run: |
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          ssh-keyscan -H github.com > ~/.ssh/known_hosts
       - run: echo "const a = 5;" >> test.js
       - run: |
             git remote set-url origin git@github.com:kitt-digital/react-ts-kitt.git
