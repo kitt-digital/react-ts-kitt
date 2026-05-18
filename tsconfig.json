@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "declaration": true,
-    "declarationDir": "src/@types",
+    "declarationDir": "./@types",
     "emitDeclarationOnly": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -18,21 +18,14 @@
     "strict": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "baseUrl": "./",
-    "outDir": "dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "lib": ["ESNext", "DOM"],
     "types": ["vite/client", "node"]
   },
-  "include": [
-    "src/**/*.vue",
-    "src/index.ts",
-    "src/components/**/*.ts",
-    "src/@types/shims-vue.d.ts"
-  ],
+  "include": ["src/index.ts"],
   "exclude": ["dist", "node_modules"]
 }
