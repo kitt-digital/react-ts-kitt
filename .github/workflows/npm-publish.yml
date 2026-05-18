@@ -38,7 +38,7 @@ jobs:
           node-version: '24.x'
 
       - name: Install dependencies
-        run: npm clean-install
+        run: npm install
       - name: Ensure the integrity of packages from the public npm registry
         run: npm audit signatures
 
