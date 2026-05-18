@@ -11,10 +11,19 @@ permissions:
 
 jobs:
   build:
-    name: Bundle
+    name: Release
     runs-on: ubuntu-latest
     environment: publish
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
@@ -24,22 +33,6 @@ jobs:
         run: npm audit signatures
       - name: Bundle
         run: npm run build
-
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    environment: publish
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
-    needs: build
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          persist-credentials: false
       - name: Publish
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
