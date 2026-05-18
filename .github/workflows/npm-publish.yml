@@ -32,7 +32,8 @@ jobs:
           node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
         env:
+          GITHUB_TOKEN: ${{ secrets.GTHB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: |
             echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
-            npm publish react-ts-kitt@1.0.1
+            npx semantic-release
