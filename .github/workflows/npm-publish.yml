@@ -42,10 +42,10 @@ jobs:
       - name: Ensure the integrity of packages from the public npm registry
         run: npm audit signatures
 
-      - name: Bundle package
+      - name: Build package
         run: npm run build
 
-      - name: Publish library
+      - name: Publish package
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           NPM_TOKEN: ${{ secrets.NPM }}
