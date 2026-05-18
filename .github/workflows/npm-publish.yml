@@ -23,11 +23,16 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
+      - name: Create SSH key
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
       - run: echo "const a = 5;" >> test.js
       - run: |
+            git remote set-url origin git@github.com:kitt-digital/react-ts-kitt.git
             git config --global user.name "kitt-digital"
             git config --global user.email "169592437+kitt-digital@users.noreply.github.com"
-            git remote set-url origin git@github.com:kitt-digital/react-ts-kitt.git
             git add test.js
             git commit -m "Automated report"
             git push
