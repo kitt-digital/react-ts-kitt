@@ -15,6 +15,7 @@ jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
+    environment: publish_react-ts-kitt
     steps:
       - uses: actions/checkout@v6
         with:
@@ -36,3 +37,6 @@ jobs:
             git add test.js
             git commit -m "Automated report"
             git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          NPM_TOKEN: ${{ secrets.NPM }}
