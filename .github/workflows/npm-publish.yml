@@ -15,10 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: publish
     steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
@@ -40,6 +36,10 @@ jobs:
       id-token: write # to enable use of OIDC for npm provenance
     needs: build
     steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
       - name: Publish
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
