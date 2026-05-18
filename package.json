@@ -1,6 +1,6 @@
 {
   "name": "react-ts-kitt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React / TypeScript 5 library for UI components / modules",
   "files": [
     "bin",
