@@ -30,9 +30,7 @@ jobs:
           node-version: '24.x'
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: npm adduser --registry https://registry.npmjs.org/ --always-auth
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm login --registry=https://registry.npmjs.org/ --token ${{ secrets.NPM_TOKEN }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
