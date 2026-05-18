@@ -1,3 +1,9 @@
+# Fine-grained personal access tokens
+# Repository permissions:
+#   Read access: actions, variables, metadata, secrets
+#   Read and Write access: contents, commit statuses, issues, pull requests, workflows
+# User permissions:
+#   -
 name: Publish Package
 
 on:
