@@ -12,27 +12,37 @@ jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Get Tag Name
+      - name: Get Tag name
+        id: vars
+        run: echo "TAG_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+
+      # Generate GitHub Release
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          fetch-depth: 0
-          persist-credentials: false
-      - uses: actions/setup-node@v5
-        with:
-          node-version: '24.x'
-      - run: |
-            git config --global user.name "kitt-digital"
-            git config --global user.email "169592437+kitt-digital@users.noreply.github.com"
-            git remote set-url origin git@github.com:kitt-digital/react-ts-kitt.git
-            echo "const a = 5;" >> test.js
-            git add test.js
-            git commit -m "Add test.js"
-            git push
+          files: ${{ env.ZIP_NAME }}
+          body: |
+            **QR Code Pack - Version ${{ github.ref_name }}**
+
+            For detailed changes in this version, see the automatically generated notes.
+          generate_release_notes: true
+          make_latest: "true"
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-          NPM_TOKEN: ${{ secrets.NPM }}
+
+      # Publish to NPM
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM }}
