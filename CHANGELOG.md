@@ -1,3 +1,14 @@
+## [1.0.5](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.4...v1.0.5) (2026-05-18)
+
+
+### Bug Fixes
+
+* **workflow:** ~ structure ([640647f](https://github.com/kitt-digital/react-ts-kitt/commit/640647fd0a933b24f3f4d405b173d42f3ec7976c))
+* **workflow:** ~ structure ([3ecc076](https://github.com/kitt-digital/react-ts-kitt/commit/3ecc076662d655fd62c77d58ab1c0b7c5b768b53))
+* **workflow:** ~ structure ([7346c7a](https://github.com/kitt-digital/react-ts-kitt/commit/7346c7a4f7ef5ca1245ee102dd6e199792d442e3))
+* **workflow:** ~ structure ([6f03c53](https://github.com/kitt-digital/react-ts-kitt/commit/6f03c53020eb6fed68b91ceffac47fcafd51b6f7))
+* **workflow:** ~ structure ([dfd32af](https://github.com/kitt-digital/react-ts-kitt/commit/dfd32af3e8501bc18d06eacf30ebcba331f3d33a))
+
 ## [1.0.4](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.3...v1.0.4) (2026-05-18)
 
 
