@@ -8,41 +8,25 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # Get Tag Name
-      - name: Get Tag name
-        id: vars
-        run: echo "TAG_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
-
-      # Generate GitHub Release
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+      - uses: actions/checkout@v6
         with:
-          files: ${{ env.ZIP_NAME }}
-          body: |
-            **QR Code Pack - Version ${{ github.ref_name }}**
-
-            For detailed changes in this version, see the automatically generated notes.
-          generate_release_notes: true
-          make_latest: "true"
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-
-      # Publish to NPM
-      - name: Setup Node
-        uses: actions/setup-node@v4
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
+          node-version: '24.x'
+      - run: echo "const a = 5;" >> test.js
+      - run: |
+            git config --global user.name "kitt-digital"
+            git config --global user.email "169592437+kitt-digital@users.noreply.github.com"
 
-      - name: Publish to NPM
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM }}
+            git commit -am "Automated report"
+            git push
