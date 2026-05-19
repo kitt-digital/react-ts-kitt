@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.8...v1.0.9) (2026-05-19)
+
+
+### Bug Fixes
+
+* **release:** + publish README ([6cc1839](https://github.com/kitt-digital/react-ts-kitt/commit/6cc1839d4d61b90f65ab26136348048840a29248))
+
 ## [1.0.8](https://github.com/kitt-digital/react-ts-kitt/compare/v1.0.7...v1.0.8) (2026-05-18)
 
 
